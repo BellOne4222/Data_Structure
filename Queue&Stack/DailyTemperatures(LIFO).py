@@ -27,13 +27,15 @@
 # 4. 코드 구현
 
 def dailyTemperatures(temperatures):
-    answer = [0] * len(temperatures) # answer 배열 초기화
+    answer = [0] * len(temperatures) # answer 배열 초기화 (temperature 배열 길이 만큼 0을 넣어서 초기화)
     stack = []
-    for cur_day, cur_temp in enumerate(temperatures): # O(n)
-        while stack and stack[-1][1] < cur_temp: # 현재 온도보다 낮은 온도가 있다면 pop
-            prev_day, _ = stack.pop()
+    for cur_day, cur_temp in enumerate(temperatures): # O(n), 인덱스와 원소의 쌍을 튜플형태로, (현재 날짜와 온도를 쌍으로 반복문을 돌리기 위해 enumerate 사용)
+        while stack and stack[-1][1] < cur_temp: # 현재 온도보다 낮은 온도가 있다면 pop, stack[-1] : top에 있는 데이터, [-1][1] -> top에 있는 데이터에서 (날짜(0번째 인덱스), 온도(1번째 인덱스))로 저장되있는 것중 온도를 나타냄
+            prev_day , _ = stack.pop() # 날짜만 나오고(기다린 날짜를 계산하기 위해 prev_day 저장) 뒤에 온도는 _로 없앰
             answer[prev_day] = cur_day - prev_day # 기다린 날짜 업데이트 prev_day 업데이트
         stack.append((cur_day, cur_temp)) # 스택에 데이터가 없거나 현재 온도보다 높은 온도가 있다면 while문 빠져 나와서, 날짜와 온도 스택에 저장 
     return answer
 
 dailyTemperatures([73,74,75,71,69,72,76,73])
+
+# 5. 디스코드 week1 stack(LIFO) 문제 보기
