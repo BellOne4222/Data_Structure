@@ -40,6 +40,7 @@ def numIslands(grid):
             cur_x, cur_y = queue.popleft() 
             
             # 상하좌우의 좌표를 알기 위한 코드
+            
             for i in range(4):
                 next_x = cur_x + dx[i]
                 next_y = cur_y + dy[i]
@@ -52,6 +53,7 @@ def numIslands(grid):
 
 
     # 이 부분 구현이 중요 윗부분은 dfs, bfs 기본 템플릿이기 때문에
+
     for i in range(m):
         for j in range(n):
             if grid[i][j] == "1" and not visited[i][j]: # 땅이면서, 방문 안했을 때(True)
